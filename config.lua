@@ -34,15 +34,22 @@ Config.SayColor = Colors.none
 
 Config.AllowTags = true -- Tags are visible at all times if the player is within the visible distance
 Config.TagCommand = 'tag'
+Config.HideTagsCommand = 'hideTags' -- Allows the user to hide all tags. Useful for taking screenshots. (set to nil if you don't want to allow this)
 Config.TagColor = Colors.none
 Config.BgAlphaTag = 0 -- Background Alpha for tags
 Config.AllowBoneTags = true -- Allows the player to attach the tag to their bone ( l_hand, r_hand, head, l_foot, r_foot, etc. )
 
-Config.AllowFocus = true -- Focus Tags are visible only if the player is aiming at the target with the focus tag. (UNTESTED)
+Config.HideSelfTags = false --Hides the tags on the user with the tag (tags still visible to other players)
+Config.HideSelfTagsCommand = 'hideSelfTags' -- Allows the user to hide the tags on themselves (still visible to other players) (set to nil if you don't want to allow this)
+
+Config.AllowFocus = true -- Focus Tags are visible only if the player is aiming at the target with the focus tag.
 Config.FocusCommand = 'focus'
 Config.FocusColor = Colors.gray
 Config.BgAlphaFocus = 150 -- Background Alpha for focus tags
 Config.AllowBoneFocus = true -- Allows the player to attach the focus tag to their bone ( l_hand, r_hand, head, l_foot, r_foot, etc. )
+
+Config.HideSelfFocus = false --Hides the focus tags on the user with the focus tag (focus tags still visible to other players)
+Config.HideSelfFocusCommand = 'hideSelfFocus' -- Allows the user to hide the focus tags on themselves (still visible to other players) (set to nil if you don't want to allow this)
 
 Config.AllowTry = true -- Will allow the player to do a /try <message> for a chance of failing or succeeding
 Config.TryCommand = 'try'

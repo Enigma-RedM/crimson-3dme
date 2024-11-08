@@ -159,6 +159,8 @@ RegisterNetEvent('crimson-3dme:focus', function(t)
     focus = t
 end)
 
+local hideTags, hideSelfTags, hideSelfFocus = false, Config.HideSelfTags, Config.HideSelfFocus
+
 if Config.AllowFocus or Config.AllowTags then
     CreateThread(function()
         while true do
@@ -180,7 +182,12 @@ if Config.AllowFocus or Config.AllowTags then
                         if distance < Config.Distance then
                             local offset = (GetPedStealthMovement(targetPed) and 0.15 or 0.2)
                             if v.bone then offset = 0.0 end
-                            DrawText3D(targetCoords.x, targetCoords.y, targetCoords.z + offset, v.message, Config.BgAlphaTag)
+                            if targetPed == playerPed and not hideSelfTags then
+                                    DrawText3D(targetCoords.x, targetCoords.y, targetCoords.z + offset, v.message, Config.BgAlphaTag)
+                            end
+                            if not hideTags and targetPed ~= playerPed then
+                                DrawText3D(targetCoords.x, targetCoords.y, targetCoords.z + offset, v.message, Config.BgAlphaTag)
+                            end
                         end
                     end
                 else
@@ -195,7 +202,7 @@ if Config.AllowFocus or Config.AllowTags then
                         local distance = #(playerCoords - targetCoords)
                         if distance < Config.Distance then
                             if RDR then
-                                local _, tPed = GetEntityPlayerIsFreeAimingAt(PlayerId())
+                                local _, tPed = GetPlayerTargetEntity(PlayerId())
 
                                 if tPed == targetPed then
                                     Focused = true
@@ -203,7 +210,7 @@ if Config.AllowFocus or Config.AllowTags then
                                     Focused = false
                                 end
                             end
-                            if Focused or targetPed == playerPed then
+                            if Focused or (targetPed == playerPed and not hideSelfFocus) then
                                 local offset = (GetPedStealthMovement(targetPed) and 0.25 or 0.3)
                                 if v.bone then offset = 0.2 end
                                 DrawText3D(targetCoords.x, targetCoords.y, targetCoords.z + offset, v.message, Config.BgAlphaFocus)
@@ -215,6 +222,22 @@ if Config.AllowFocus or Config.AllowTags then
                 end
             end
         end
+    end)
+end
+
+if Config.HideTagsCommand then
+    RegisterCommand(Config.HideTagsCommand, function (source, args)
+        hideTags = not hideTags
+    end)
+end
+if Config.HideSelfTagsCommand then
+    RegisterCommand(Config.HideSelfTagsCommand, function (source, args)
+        hideSelfTags = not hideSelfTags
+    end)
+end
+if Config.HideSelfFocusCommand then
+    RegisterCommand(Config.HideSelfFocusCommand, function (source, args)
+        hideSelfFocus = not hideSelfFocus
     end)
 end
 
