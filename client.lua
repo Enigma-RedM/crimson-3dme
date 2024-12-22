@@ -106,8 +106,10 @@ RegisterNetEvent('crimson-3dme', function(message, id)
             local targetCoords = GetEntityCoords(targetPed)
             local distance = #(playerCoords - targetCoords)
 
+            local msg = string.gsub(message, "~.-~", "")
+
             if distance < Config.Distance then
-                TriggerEvent('chat:addMessage', {args = {'['..id.. ']',message}, color = {150, 0, 255}})
+                TriggerEvent('chat:addMessage', {args = {'['..id.. ']',msg}, color = {150, 0, 255}})
             end
         end
 
