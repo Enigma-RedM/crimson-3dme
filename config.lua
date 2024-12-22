@@ -58,3 +58,5 @@ Config.TryChance = 50 -- Chance to Fail
 -- Background Sprites, only shows if BgAlpha-- is higher than 0. If nothing is set, like in GTA, it'll just be a black rectangle background.
 Config.textureDict = Config.RDR and 'shard_backgrounds' or '' -- Set texture dictionary for RDR
 Config.textureName = Config.RDR and 'shard_game_update' or '' -- Set texture name for RDR
+
+Config.AllowCurlyCode = true -- If false, this will remove any curly code like ~pa~, ~n~, ~t4~, etc. from the text, stopping players from coloring their text

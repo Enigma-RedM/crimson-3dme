@@ -254,6 +254,10 @@ if Config.AllowTags then
         local color = Config.TagColor
         local message = color..table.concat(args, " ")
 
+        if not Config.AllowCurlyCode then
+            message = color..string.gsub(table.concat(args, " "), "~.-~", "")
+        end
+
         TriggerServerEvent('crimson-3dme:tag', message, GetPlayerServerId(PlayerId()), bone or nil)
     end)
 end
@@ -270,6 +274,10 @@ if Config.AllowFocus then
         end
         local color = Config.FocusColor
         local message = color..table.concat(args, " ")
+
+        if not Config.AllowCurlyCode then
+            message = color..string.gsub(table.concat(args, " "), "~.-~", "")
+        end
 
         TriggerServerEvent('crimson-3dme:focus', message, GetPlayerServerId(PlayerId()), bone or nil)
     end)
@@ -288,6 +296,10 @@ end
 RegisterCommand(Config.MeCommand, function(source, args)
     local color = Config.MeColor
     local message = color..table.concat(args, " ")
+
+    if not Config.AllowCurlyCode then
+        message = color..string.gsub(table.concat(args, " "), "~.-~", "")
+    end
     if message == "" then
         return
     end
@@ -297,6 +309,10 @@ end)
 RegisterCommand(Config.DoCommand, function(source, args)
     local color = Config.DoColor
     local message = color..table.concat(args, " ")
+
+    if not Config.AllowCurlyCode then
+        message = color..string.gsub(table.concat(args, " "), "~.-~", "")
+    end
     if message == "" then
         return
     end
@@ -308,6 +324,10 @@ if Config.AllowSay then
     RegisterCommand(Config.SayCommand, function(source, args)
         local color = Config.SayColor
         local message = color..' "'..table.concat(args, " ")..'" '
+
+        if not Config.AllowCurlyCode then
+            message = color..' "'..string.gsub(table.concat(args, " "), "~.-~", "")..'" '
+        end
         if message == "" then
             return
         end
@@ -325,9 +345,17 @@ if Config.AllowTry then
         local color = (RDR and '~e~' or '~r~')
         local message = color..'Tried '..table.concat(args, " ")..' and failed...'
 
+        if not Config.AllowCurlyCode then
+            message = color..'Tried '..string.gsub(table.concat(args, " "), "~.-~", "")..' and failed...'
+        end
+
         if chance >= Config.TryChance then
             color = (RDR and '~t6~' or '~g~')
             message = color..'Tried '..table.concat(args, " ")..' and succeeded!'
+
+        if not Config.AllowCurlyCode then
+            message = color..'Tried '..string.gsub(table.concat(args, " "), "~.-~", "")..' and succeeded!'
+        end
         end
 
         TriggerServerEvent('crimson-3dme', message, GetPlayerServerId(PlayerId()))
