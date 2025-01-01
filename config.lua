@@ -20,7 +20,7 @@ Config.Timer = 6 -- How long in Seconds does the /me, /do or /say last on screen
 Config.FootScale = 2
 Config.VehicleScale = 3
 
-Config.PrintToChat = false -- Would allow for people to scroll back on missed /me's, /do's, etc. in the chat
+Config.PrintToChat = true -- Would allow for people to scroll back on missed /me's, /do's, etc. in the chat
 
 Config.MeCommand = 'me'
 Config.MeColor = Colors.orange
