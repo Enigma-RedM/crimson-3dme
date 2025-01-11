@@ -20,7 +20,7 @@ Config.Timer = 6 -- How long in Seconds does the /me, /do or /say last on screen
 Config.FootScale = 2
 Config.VehicleScale = 3
 
-Config.PrintToChat = true -- Would allow for people to scroll back on missed /me's, /do's, etc. in the chat
+Config.PrintToChat = false -- Would allow for people to scroll back on missed /me's, /do's, etc. in the chat
 
 Config.MeCommand = 'me'
 Config.MeColor = Colors.orange
@@ -60,3 +60,7 @@ Config.textureDict = Config.RDR and 'shard_backgrounds' or '' -- Set texture dic
 Config.textureName = Config.RDR and 'shard_game_update' or '' -- Set texture name for RDR
 
 Config.AllowCurlyCode = true -- If false, this will remove any curly code like ~pa~, ~n~, ~t4~, etc. from the text, stopping players from coloring their text
+
+Config.Webhook = "" -- Leave empty if you don't want Discord Logs for these commands
+Config.WebhookName = 'crimson-3dme'
+Config.webhookAvatar = nil -- URL for an avatar image

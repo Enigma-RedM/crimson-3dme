@@ -1,9 +1,18 @@
 RegisterNetEvent('crimson-3dme', function (message, id)
     TriggerClientEvent('crimson-3dme', -1, message, id)
+
+    if Config.Webhook and Config.Webhook ~= "" then
+        SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName, Config.WebhookAvatar)
+    end
 end)
 
 local tags = {}
 RegisterNetEvent('crimson-3dme:tag', function (message, id, bone)
+
+    if Config.Webhook and Config.Webhook ~= "" then
+        SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName.. ' - /tag', Config.WebhookAvatar)
+    end
+
     if message == Config.TagColor then
         for i, v in pairs(tags) do
             if v.id == id and v.bone == bone then
@@ -28,6 +37,11 @@ end)
 
 local focus = {}
 RegisterNetEvent('crimson-3dme:focus', function (message, id, bone)
+
+    if Config.Webhook and Config.Webhook ~= "" then
+        SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName.. ' - /focus', Config.WebhookAvatar)
+    end
+
     if message == Config.FocusColor then
         for i, v in pairs(focus) do
             if v.id == id and v.bone == bone then
@@ -54,3 +68,28 @@ AddEventHandler('playerLoaded', function(playerId)
     TriggerClientEvent('crimson-3dme:tag', playerId, tags)
     TriggerClientEvent('crimson-3dme:focus', playerId, focus)
 end)
+
+function SendDiscordWebhook(name, description, embeds, webhookurl, webhookname, webhookavatar)
+    local wname =  webhookname
+    local avatar = webhookavatar
+    local webhook = webhookurl
+
+    if embeds == nil then
+        embeds = {{
+            color = 11342935,
+            title = name,
+            description = description
+        }}
+    end
+
+    local payload = {
+        username = wname,
+        avatar_url = avatar,
+        type = 'rich',
+        embeds = embeds
+    }
+
+    PerformHttpRequest(webhook, function(err, text, headers)end, 'POST', json.encode(payload), {
+        ['Content-Type'] = 'application/json'
+    })
+end
