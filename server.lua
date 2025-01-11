@@ -9,10 +9,6 @@ end)
 local tags = {}
 RegisterNetEvent('crimson-3dme:tag', function (message, id, bone)
 
-    if Config.Webhook and Config.Webhook ~= "" then
-        SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName.. ' - /tag', Config.WebhookAvatar)
-    end
-
     if message == Config.TagColor then
         for i, v in pairs(tags) do
             if v.id == id and v.bone == bone then
@@ -33,14 +29,14 @@ RegisterNetEvent('crimson-3dme:tag', function (message, id, bone)
         end
     end
         TriggerClientEvent('crimson-3dme:tag', -1, tags)
+
+    if Config.Webhook and Config.Webhook ~= "" then
+        SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName.. ' - /tag', Config.WebhookAvatar)
+    end
 end)
 
 local focus = {}
 RegisterNetEvent('crimson-3dme:focus', function (message, id, bone)
-
-    if Config.Webhook and Config.Webhook ~= "" then
-        SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName.. ' - /focus', Config.WebhookAvatar)
-    end
 
     if message == Config.FocusColor then
         for i, v in pairs(focus) do
@@ -62,6 +58,10 @@ RegisterNetEvent('crimson-3dme:focus', function (message, id, bone)
         end
     end
         TriggerClientEvent('crimson-3dme:focus', -1, focus)
+
+    if Config.Webhook and Config.Webhook ~= "" then
+        SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName.. ' - /focus', Config.WebhookAvatar)
+    end
 end)
 
 AddEventHandler('playerLoaded', function(playerId)

@@ -4,7 +4,7 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 
 author "Enigma.RedM"
 description "/me, /do, etc. script that displays text on the player"
-version "1.3"
+version "1.4"
 
 client_scripts {
     'config.lua',
