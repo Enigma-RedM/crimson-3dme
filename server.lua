@@ -27,12 +27,12 @@ RegisterNetEvent('crimson-3dme:tag', function (message, id, bone)
         if not found then
             table.insert(tags, {message = message, id = id, bone = bone or nil})
         end
+
+        if Config.Webhook and Config.Webhook ~= "" then
+            SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName.. ' - /tag', Config.WebhookAvatar)
+        end
     end
         TriggerClientEvent('crimson-3dme:tag', -1, tags)
-
-    if Config.Webhook and Config.Webhook ~= "" then
-        SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName.. ' - /tag', Config.WebhookAvatar)
-    end
 end)
 
 local focus = {}
@@ -56,17 +56,31 @@ RegisterNetEvent('crimson-3dme:focus', function (message, id, bone)
         if not found then
             table.insert(focus, {message = message, id = id, bone = bone or nil})
         end
+
+        if Config.Webhook and Config.Webhook ~= "" then
+            SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName.. ' - /focus', Config.WebhookAvatar)
+        end
     end
         TriggerClientEvent('crimson-3dme:focus', -1, focus)
-
-    if Config.Webhook and Config.Webhook ~= "" then
-        SendDiscordWebhook("ID: "..source, "```"..message.."```", nil, Config.Webhook, Config.WebhookName.. ' - /focus', Config.WebhookAvatar)
-    end
 end)
 
 AddEventHandler('playerLoaded', function(playerId)
     TriggerClientEvent('crimson-3dme:tag', playerId, tags)
     TriggerClientEvent('crimson-3dme:focus', playerId, focus)
+end)
+
+AddEventHandler('playerDropped', function(source)
+    for i,v in pairs(tags) do
+        if v.id == source then
+            table.remove(tags, i)
+        end
+    end
+    
+    for i,v in pairs(focus) do
+        if v.id == source then
+            table.remove(focus, i)
+        end
+    end
 end)
 
 function SendDiscordWebhook(name, description, embeds, webhookurl, webhookname, webhookavatar)
