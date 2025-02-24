@@ -363,3 +363,26 @@ if Config.AllowTry then
         TriggerServerEvent('crimson-3dme', message, GetPlayerServerId(PlayerId()))
     end)
 end
+
+Citizen.CreateThread(function ()
+    while true do
+        Wait(0)
+
+        local players = GetActivePlayers()
+        
+        if IsControlPressed(0, `INPUT_PLAYER_MENU`) then
+            for i, v in pairs(players) do
+                --if v == PlayerId() then return end
+                local ped = GetPlayerPed(v)
+                local coords = GetPedBoneCoords(ped, 27981)
+                local id = GetPlayerServerId(v)
+
+                if #(coords - GetEntityCoords(PlayerPedId())) > 15.0 then
+                    return
+                end
+
+                DrawText3D(coords.x, coords.y, coords.z + 0.3, "ID: ~t1~"..id, 0)
+            end
+        end
+    end
+end)
