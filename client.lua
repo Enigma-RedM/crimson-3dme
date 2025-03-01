@@ -192,8 +192,6 @@ if Config.AllowFocus or Config.AllowTags then
                             end
                         end
                     end
-                else
-                    print('Target Ped not found or does not exist for ID: ' .. v.id)
                 end
             end
             for _, v in pairs(focus) do
@@ -219,8 +217,6 @@ if Config.AllowFocus or Config.AllowTags then
                             end
                         end
                     end
-                else
-                    print('Target Ped not found or does not exist for ID: ' .. v.id)
                 end
             end
         end
