@@ -10,6 +10,7 @@ local Colors = {
     blue = Config.RDR and '~t3~' or '~b~',
     purple = Config.RDR and '~t1~' or '~p~',
     green = Config.RDR and '~t6~' or '~g~',
+    yellow = Config.RDR and '~t4~' or '',
 }
 
 Config.Distance = 8.0 -- Distance the player needs to be from a target before they can see their me's, do's, say's, tag's, focus', etc.
@@ -21,10 +22,10 @@ Config.Timer = 8 -- How long in Seconds does the /me, /do /say, etc. last on scr
 Config.FootScale = 2
 Config.VehicleScale = 3
 
-Config.PrintToChat = false -- Would allow for people to scroll back on missed /me's, /do's, etc. in the chat
+Config.PrintToChat = true -- Would allow for people to scroll back on missed /me's, /do's, etc. in the chat
 
 Config.MeCommand = 'me'
-Config.MeColor = Colors.orange
+Config.MeColor = Colors.yellow
 
 Config.DoCommand = 'do'
 Config.DoColor = Colors.blue
@@ -71,3 +72,9 @@ Config.AllowCurlyCode = true -- If false, this will remove any curly code like ~
 Config.Webhook = "" -- Leave empty if you don't want Discord Logs for these commands
 Config.WebhookName = 'crimson-3dme'
 Config.webhookAvatar = nil -- URL for an avatar image
+
+Config.Blacklist = {
+    ['report'] = {'nigger', 'bitch', 'cunt'}, 
+    ['tags'] = {'thinking'}
+}
+Config.BlacklistWebhook = 'https://discord.com/api/webhooks/1339874674695340054/vQIRQ_CSriaPzgmb7xlswJ1rvxsP-BkO1udhDBggf96muA8vLHML4Il1XYBbqXh511tE'

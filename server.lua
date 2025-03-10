@@ -64,6 +64,12 @@ RegisterNetEvent('crimson-3dme:focus', function (message, id, bone)
         TriggerClientEvent('crimson-3dme:focus', -1, focus)
 end)
 
+RegisterNetEvent('crimson-3dme:BlacklistedWord', function (words, word)
+    if Config.BlacklistWebhook then
+        SendDiscordWebhook("ID: "..source, "# Blacklisted Word was used: "..word.."```"..words.."```", nil, Config.BlacklistWebhook, Config.WebhookName.. ' - /focus', Config.WebhookAvatar)
+    end
+end)
+
 AddEventHandler('playerLoaded', function(playerId)
     TriggerClientEvent('crimson-3dme:tag', playerId, tags)
     TriggerClientEvent('crimson-3dme:focus', playerId, focus)

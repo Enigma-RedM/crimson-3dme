@@ -241,6 +241,19 @@ end
 
 if Config.AllowTags then
     RegisterCommand(Config.TagCommand, function (source, args, raw)
+        for _, word in pairs(Config.Blacklist['report']) do
+            if string.find(raw, word, 1, true) then
+                TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
+                return
+            end
+        end
+        for _, word in pairs(Config.Blacklist['tags']) do
+            for _, arg in pairs(args) do
+                if word == arg then
+                    return
+                end
+            end
+        end
         local bone = nil
         if #args > 0 then
             local bType = (RDR and 'SKEL_' or 'IK_')
@@ -262,6 +275,12 @@ end
 
 if Config.AllowFocus then
     RegisterCommand(Config.FocusCommand, function (source, args, raw)
+        for _, word in pairs(Config.Blacklist['report']) do
+            if string.find(raw, word, 1, true) then
+                TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
+                return
+            end
+        end
         local bone = nil
         if #args > 0 then
             local bType = (RDR and 'SKEL_' or 'IK_')
@@ -291,7 +310,13 @@ function GetBoneCoords(playerPed, boneName)
     end
 end
 
-RegisterCommand(Config.MeCommand, function(source, args)
+RegisterCommand(Config.MeCommand, function(source, args, raw)
+    for _, word in pairs(Config.Blacklist['report']) do
+        if string.find(raw, word, 1, true) then
+            TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
+            return
+        end
+    end
     local color = Config.MeColor
     local message = color..table.concat(args, " ")
 
@@ -304,7 +329,13 @@ RegisterCommand(Config.MeCommand, function(source, args)
 
     TriggerServerEvent('crimson-3dme', message, GetPlayerServerId(PlayerId()))
 end)
-RegisterCommand(Config.DoCommand, function(source, args)
+RegisterCommand(Config.DoCommand, function(source, args, raw)
+    for _, word in pairs(Config.Blacklist['report']) do
+        if string.find(raw, word, 1, true) then
+            TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
+            return
+        end
+    end
     local color = Config.DoColor
     local message = color..table.concat(args, " ")
 
@@ -318,7 +349,13 @@ RegisterCommand(Config.DoCommand, function(source, args)
     TriggerServerEvent('crimson-3dme', message, GetPlayerServerId(PlayerId()))
 end)
 
-RegisterCommand(Config.HurtCommand, function(source, args)
+RegisterCommand(Config.HurtCommand, function(source, args, raw)
+    for _, word in pairs(Config.Blacklist['report']) do
+        if string.find(raw, word, 1, true) then
+            TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
+            return
+        end
+    end
     local color = Config.HurtColor
     local message = color..' "'..table.concat(args, " ")..'" '
 
@@ -332,7 +369,13 @@ RegisterCommand(Config.HurtCommand, function(source, args)
     TriggerServerEvent('crimson-3dme', message, GetPlayerServerId(PlayerId()))
 end)
 
-RegisterCommand(Config.ThinkCommand, function(source, args)
+RegisterCommand(Config.ThinkCommand, function(source, args, raw)
+    for _, word in pairs(Config.Blacklist['report']) do
+        if string.find(raw, word, 1, true) then
+            TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
+            return
+        end
+    end
     local color = Config.ThinkColor
     local message = color..' "'..table.concat(args, " ")..'" '
 
@@ -347,7 +390,13 @@ RegisterCommand(Config.ThinkCommand, function(source, args)
 end)
 
 if Config.AllowSay then
-    RegisterCommand(Config.SayCommand, function(source, args)
+    RegisterCommand(Config.SayCommand, function(source, args, raw)
+        for _, word in pairs(Config.Blacklist['report']) do
+            if string.find(raw, word, 1, true) then
+                TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
+                return
+            end
+        end
         local color = Config.SayColor
         local message = color..' "'..table.concat(args, " ")..'" '
 
@@ -363,7 +412,13 @@ if Config.AllowSay then
 end
 
 if Config.AllowTry then
-    RegisterCommand(Config.TryCommand, function(source, args)
+    RegisterCommand(Config.TryCommand, function(source, args, raw)
+        for _, word in pairs(Config.Blacklist['report']) do
+            if string.find(raw, word, 1, true) then
+                TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
+                return
+            end
+        end
         local chance = math.random(0, 100)
         if message == "" then
             return
