@@ -77,4 +77,4 @@ Config.Blacklist = {
     ['report'] = {'nigger', 'bitch', 'cunt'}, 
     ['tags'] = {'thinking'}
 }
-Config.BlacklistWebhook = 'https://discord.com/api/webhooks/1339874674695340054/vQIRQ_CSriaPzgmb7xlswJ1rvxsP-BkO1udhDBggf96muA8vLHML4Il1XYBbqXh511tE'
+Config.BlacklistWebhook = nil
