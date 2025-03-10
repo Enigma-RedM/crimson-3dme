@@ -3,7 +3,8 @@ Config.RDR = GetGameName() == "redm" -- This script supports both FiveM and RedM
 
 local Colors = {
     none = '',
-    red = Config.RDR and '~e~' or '~r~', -- Basically, if RDR then ~e~ else ~r~ for FiveM
+    red = Config.RDR and '~t8~' or '~r~', -- Basically, if RDR then ~t8~ else ~r~ for FiveM since they use different color codes
+    darkred = Config.RDR and '~e~' or '~r~',
     orange = Config.RDR and '~t2~' or '~o~',
     gray = '~t~',
     blue = Config.RDR and '~t3~' or '~b~',
@@ -13,8 +14,8 @@ local Colors = {
 
 Config.Distance = 8.0 -- Distance the player needs to be from a target before they can see their me's, do's, say's, tag's, focus', etc.
 Config.BgAlpha = 150 -- Background Alpha for /me and /do
-Config.Font = 0 -- What font to use for the text. The value must be a number
-Config.Timer = 6 -- How long in Seconds does the /me, /do or /say last on screen
+Config.Font = 1 -- What font to use for the text. The value must be a number
+Config.Timer = 8 -- How long in Seconds does the /me, /do /say, etc. last on screen
 
 --This will set the size multiplier of the text for when the player is On Foot or in a vehicle/on a mount
 Config.FootScale = 2
@@ -28,7 +29,13 @@ Config.MeColor = Colors.orange
 Config.DoCommand = 'do'
 Config.DoColor = Colors.blue
 
-Config.AllowSay = true
+Config.HurtCommand = 'hurt'
+Config.HurtColor = Colors.red
+
+Config.ThinkCommand = 'think'
+Config.ThinkColor = Colors.gray
+
+Config.AllowSay = false
 Config.SayCommand = 'say'
 Config.SayColor = Colors.none
 
@@ -37,7 +44,7 @@ Config.TagCommand = 'tag'
 Config.HideTagsCommand = 'hideTags' -- Allows the user to hide all tags. Useful for taking screenshots. (set to nil if you don't want to allow this)
 Config.TagColor = Colors.none
 Config.BgAlphaTag = 0 -- Background Alpha for tags
-Config.AllowBoneTags = true -- Allows the player to attach the tag to their bone ( l_hand, r_hand, head, l_foot, r_foot, etc. )
+Config.AllowBoneTags = true -- Allows the player to attach the tag to their bone ( l_hand, r_hand, head, l_foot, r_foot, etc. ) "/tag l_foot bleeding"
 
 Config.HideSelfTags = false --Hides the tags on the user with the tag (tags still visible to other players)
 Config.HideSelfTagsCommand = 'hideSelfTags' -- Allows the user to hide the tags on themselves (still visible to other players) (set to nil if you don't want to allow this)
@@ -46,7 +53,7 @@ Config.AllowFocus = true -- Focus Tags are visible only if the player is aiming 
 Config.FocusCommand = 'focus'
 Config.FocusColor = Colors.gray
 Config.BgAlphaFocus = 150 -- Background Alpha for focus tags
-Config.AllowBoneFocus = true -- Allows the player to attach the focus tag to their bone ( l_hand, r_hand, head, l_foot, r_foot, etc. )
+Config.AllowBoneFocus = true -- Allows the player to attach the focus tag to their bone ( l_hand, r_hand, head, l_foot, r_foot, etc. ) "/tag l_foot missing toe"
 
 Config.HideSelfFocus = false --Hides the focus tags on the user with the focus tag (focus tags still visible to other players)
 Config.HideSelfFocusCommand = 'hideSelfFocus' -- Allows the user to hide the focus tags on themselves (still visible to other players) (set to nil if you don't want to allow this)

@@ -318,6 +318,34 @@ RegisterCommand(Config.DoCommand, function(source, args)
     TriggerServerEvent('crimson-3dme', message, GetPlayerServerId(PlayerId()))
 end)
 
+RegisterCommand(Config.HurtCommand, function(source, args)
+    local color = Config.HurtColor
+    local message = color..' "'..table.concat(args, " ")..'" '
+
+    if not Config.AllowCurlyCode then
+        message = color..' "'..string.gsub(table.concat(args, " "), "~.-~", "")..'" '
+    end
+    if message == "" then
+        return
+    end
+
+    TriggerServerEvent('crimson-3dme', message, GetPlayerServerId(PlayerId()))
+end)
+
+RegisterCommand(Config.ThinkCommand, function(source, args)
+    local color = Config.ThinkColor
+    local message = color..' "'..table.concat(args, " ")..'" '
+
+    if not Config.AllowCurlyCode then
+        message = color..' "'..string.gsub(table.concat(args, " "), "~.-~", "")..'" '
+    end
+    if message == "" then
+        return
+    end
+
+    TriggerServerEvent('crimson-3dme', message, GetPlayerServerId(PlayerId()))
+end)
+
 if Config.AllowSay then
     RegisterCommand(Config.SayCommand, function(source, args)
         local color = Config.SayColor
