@@ -66,7 +66,7 @@ end)
 
 RegisterNetEvent('crimson-3dme:BlacklistedWord', function (words, word)
     if Config.BlacklistWebhook then
-        SendDiscordWebhook("ID: "..source, "# Blacklisted Word was used: "..word.."```"..words.."```", nil, Config.BlacklistWebhook, Config.WebhookName.. ' - /focus', Config.WebhookAvatar)
+        SendDiscordWebhook("ID: "..source, "# Blacklisted Word was used: "..word.."```"..words.."```", nil, Config.BlacklistWebhook, Config.WebhookName, Config.WebhookAvatar)
     end
 end)
 

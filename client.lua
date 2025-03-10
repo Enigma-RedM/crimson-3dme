@@ -242,7 +242,7 @@ end
 if Config.AllowTags then
     RegisterCommand(Config.TagCommand, function (source, args, raw)
         for _, word in pairs(Config.Blacklist['report']) do
-            if string.find(raw, word, 1, true) then
+            if string.find(string.lower(raw), word, 1, true) then
                 TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
                 return
             end
@@ -276,7 +276,7 @@ end
 if Config.AllowFocus then
     RegisterCommand(Config.FocusCommand, function (source, args, raw)
         for _, word in pairs(Config.Blacklist['report']) do
-            if string.find(raw, word, 1, true) then
+            if string.find(string.lower(raw), word, 1, true) then
                 TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
                 return
             end
@@ -312,7 +312,7 @@ end
 
 RegisterCommand(Config.MeCommand, function(source, args, raw)
     for _, word in pairs(Config.Blacklist['report']) do
-        if string.find(raw, word, 1, true) then
+        if string.find(string.lower(raw), word, 1, true) then
             TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
             return
         end
@@ -331,7 +331,7 @@ RegisterCommand(Config.MeCommand, function(source, args, raw)
 end)
 RegisterCommand(Config.DoCommand, function(source, args, raw)
     for _, word in pairs(Config.Blacklist['report']) do
-        if string.find(raw, word, 1, true) then
+        if string.find(string.lower(raw), word, 1, true) then
             TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
             return
         end
@@ -351,7 +351,7 @@ end)
 
 RegisterCommand(Config.HurtCommand, function(source, args, raw)
     for _, word in pairs(Config.Blacklist['report']) do
-        if string.find(raw, word, 1, true) then
+        if string.find(string.lower(raw), word, 1, true) then
             TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
             return
         end
@@ -371,7 +371,7 @@ end)
 
 RegisterCommand(Config.ThinkCommand, function(source, args, raw)
     for _, word in pairs(Config.Blacklist['report']) do
-        if string.find(raw, word, 1, true) then
+        if string.find(string.lower(raw), word, 1, true) then
             TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
             return
         end
@@ -392,7 +392,7 @@ end)
 if Config.AllowSay then
     RegisterCommand(Config.SayCommand, function(source, args, raw)
         for _, word in pairs(Config.Blacklist['report']) do
-            if string.find(raw, word, 1, true) then
+            if string.find(string.lower(raw), word, 1, true) then
                 TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
                 return
             end
@@ -414,7 +414,7 @@ end
 if Config.AllowTry then
     RegisterCommand(Config.TryCommand, function(source, args, raw)
         for _, word in pairs(Config.Blacklist['report']) do
-            if string.find(raw, word, 1, true) then
+            if string.find(string.lower(raw), word, 1, true) then
                 TriggerServerEvent('crimson-3dme:BlacklistedWord', raw, word)
                 return
             end
